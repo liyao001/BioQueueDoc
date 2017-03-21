@@ -2,7 +2,7 @@ Get Started
 ===========
 Prerequisites
 -------------
-BioQueue can store data on SQLite, which means users can set up BioQueue without an extra database software. However, to achieve a higher performance, we suggest users to install MySQL. For Windows users, download the MySQL Installer or Zipped binary from [MySQL](http://www.mysql.com/downloads/). For POSIX compatible systems (like Ubuntu) users, running the following command should be enough to install MySQL server::
+BioQueue can store data on SQLite, which means users can set up BioQueue without an extra database software. However, to achieve a higher performance, we suggest users to install MySQL. For Windows users, download the MySQL Installer or Zipped binary from `MySQL <http://www.mysql.com/downloads/>`_. For POSIX compatible systems (like Ubuntu) users, running the following command should be enough to install MySQL server::
 
 	sudo apt-get install mysql-server mysql-client
 	sudo apt-get install libmysqld-dev

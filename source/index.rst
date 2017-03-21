@@ -21,6 +21,7 @@ Contents
    getstarted
    protocol
    job
+   example
    faq
 
 Indices and tables
