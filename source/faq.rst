@@ -1,12 +1,24 @@
 FAQ
 ===
+Upload file
+-----------
+When uploading datasets, the files are usually cached in memory till the upload is finished. In bioinformatics research, files are large in most cases, so it may eat up memory. To avoid this risk, BioQueue provide a FTP service. The administrator can start the service by running::
+
+  python ftp_daemon.py start
+  Or
+  python ftpserver.py
+
+And users can use a ftp client (`FileZilla <https://filezilla-project.org/>`_, the free FTP solution) to access this service. Files will be uploaded to user's upload folder, and those files can be selected by click the ``Choose FTP file`` in the ``Create Job`` page. Note: the user name and password are identical to those in BioQueue web platform. The default port is **20001** not **21**.
+
+.. image:: https://cloud.githubusercontent.com/assets/17058337/24163553/e221c5c6-0ea5-11e7-94a6-396d237aa9e3.png
+
 Use BioQueue with Apache in Production Environment
 --------------------------------------------------
-To host CPBQueue with Apache, you must first install the ``mod_wsgi`` Apache module. On Ubuntu, you can install this as follows::
+To host BioQueue with Apache, you must first install the ``mod_wsgi`` Apache module. On Ubuntu, you can install this as follows::
 
     sudo apt-get install libapache2-mod-wsgi
 
-If you have not installed Apache, before run command above, you need to setup Apache server by running this command::
+If you have not installed Apache, before running command above, you need to setup Apache server by running this command::
 
     sudo apt-get install apache2
 
@@ -22,32 +34,12 @@ We know that keeping an eye on watching those time-consuming jobs is very tediou
 
 Using BioQueue in Compute Cluster
 ---------------------------------
-BioQueue possesses a plug-in system to provide supports for compute clusters. For example, BioQueue currently supports TORQUE PBS, and does not require a dedicated or special cluster configuration. If you want to use BioQueue in TORQUE PBS, open the ``config.conf`` file in ``worker`` folder, then change following items in ``torque`` section:
+BioQueue possesses a plug-in system to provide supports for compute clusters. For example, BioQueue currently supports TORQUE PBS, and does not require a dedicated or special cluster configuration. If you want to use BioQueue in TORQUE PBS, open the ``config.conf`` file in ``worker`` folder, then change following items in ``cluster`` section:
 
-1. ``type`` to ``torque``.
+1. ``type`` to ``TorquePBS``.
 2. ``cpu`` to the amount of CPU to use.
 3. ``queue`` to the name of the queue, for example 'high', 'low' or 'fat'.
 
 Develop new Cluster Plug-in for BioQueue
 ----------------------------------------
-To develop new cluster plug-in for BioQueue, you need to implement ``ClusterModel`` in ``worker >> cluster_models >> cluster_model.py`` and override methods defined in it.
-
-+------------------+---------------------------------------------------------+----------------------------------------+
-|Method            |Parameter                                                |Return                                  |
-+==================+=========================================================+========================================+
-|alter_attribute   |attribute                                                |Success: 1, error: 0                    |
-+------------------+---------------------------------------------------------+----------------------------------------+
-|cancel_job        |None                                                     |Success: 1, error: 0                    |
-+------------------+---------------------------------------------------------+----------------------------------------+
-|get_cluster_status|None                                                     |A dictionary stores status of every node|
-+------------------+---------------------------------------------------------+----------------------------------------+
-|hold_job          |None                                                     |Success: 1, error: 0                    |
-+------------------+---------------------------------------------------------+----------------------------------------+
-|load_template     |None                                                     |A string (template for submitting a job)|
-+------------------+---------------------------------------------------------+----------------------------------------+
-|query_job_status  |None                                                     |Job id or 0 (error)                     |
-+------------------+---------------------------------------------------------+----------------------------------------+
-|release_job       |None                                                     |Success: 1, error: 0                    |
-+------------------+---------------------------------------------------------+----------------------------------------+
-|submit_job        |protocol, job_id, job_step, cpu=0, queue='', workspace=''|Success: 1, error: 0                    |
-+------------------+---------------------------------------------------------+----------------------------------------+
+We use ``__import__`` feature to load drivers for HPC, so to develop new cluster plug-in for BioQueue, you need to implement functions listed in ``worker >> cluster_models >> TorquePBS.py``. Then you should save this driver file in the ``cluster_models`` folder. When you want to load this driver, change ``type`` in ``config.conf`` file to identical to the driver’s name.
