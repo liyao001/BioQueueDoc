@@ -82,6 +82,8 @@ There are two main types of wildcards in BioQueue: pre-defined wildcards and use
 +---------------+------------------------------------------------------------------------------+
 |Suffix:N-X     |Output file(s) with a "X" suffix in the n-th step.                            |
 +---------------+------------------------------------------------------------------------------+
+|Suffix:N-X-M   |The m-th output file with a "X" suffix in the n-th step.                      |
++---------------+------------------------------------------------------------------------------+
 |InputFile      |The initial input files which maps to files you provide when you create a job.|
 +---------------+------------------------------------------------------------------------------+
 |InputFile:N    |The n-th file in input files.                                                 |
