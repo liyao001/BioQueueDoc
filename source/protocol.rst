@@ -92,7 +92,9 @@ There are two main types of wildcards in BioQueue: pre-defined wildcards and use
 +---------------+------------------------------------------------------------------------------+
 |LastOutput:N   |The n-th output file of last step (in alphabetical order).                    |
 +---------------+------------------------------------------------------------------------------+
-|Output:N-M     |The m-th output file of the n-th step (in alphabetical order)+.               |
+|Output:N-M     |The m-th output file of the n-th step (in alphabetical order).                |
++---------------+------------------------------------------------------------------------------+
+|History:N-X    |Output file "X" in the n-th job.                                              |
 +---------------+------------------------------------------------------------------------------+
 |AllOutputBefore|All output files before this step.                                            |
 +---------------+------------------------------------------------------------------------------+
