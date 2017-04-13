@@ -12,6 +12,12 @@ And users can use a ftp client (`FileZilla <https://filezilla-project.org/>`_, t
 
 .. image:: https://cloud.githubusercontent.com/assets/17058337/24163553/e221c5c6-0ea5-11e7-94a6-396d237aa9e3.png
 
+How to update BioQueue
+----------------------
+We will bring new features and fix bugs when we release a new version. So we recommand you to keep your instance as new as possible. If you have an BioQueue repository and want to update it, run::
+
+  git pull
+
 Use BioQueue with Apache in Production Environment
 --------------------------------------------------
 To host BioQueue with Apache, you must first install the ``mod_wsgi`` Apache module. On Ubuntu, you can install this as follows::
