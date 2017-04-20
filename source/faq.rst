@@ -34,17 +34,27 @@ You can then find an example VirtualHost file located at ``deploy/000-default.co
 
 Note: For virtualenv users, please replace ``/usr/lib/python2.7/dist-packages`` with ``/path/to/venv/lib/python2.7/site-packages``.
 
+Cannot install MySQL-python?
+----------------------------
+By default, BioQueue will use a python package called MySQL-python to connect to MySQL server. However, it may be hard to install it especially for non-root users. The alternative solution is to use PyMySQL (a pure python mysql client). Here is the protocol:
+
+1. Remove ``MySQL-python>=1.2.5`` from ``prerequisites.txt`` in ``deploy`` folder.
+2. Rerun ``install.py``.
+3. Copy the following code and paste them into ``manage.py`` and ``worker >> __init__.py``::
+  try:
+    import pymysql
+    pymysql.install_as_MySQLdb()
+  except ImportError:
+    pass
+4. Restart BioQueue.
+
 Turn on E-mail Notification
 ---------------------------
-We know that keeping an eye on watching those time-consuming jobs is very tedious, so BioQueue provides an E-mail notification for changes among job status. By default, e-mail notification is silent. To turn on this push service, you need to fill in a form in ``Settings >> Notification``. If the ``Sender name`` textbox is left to be blank, then the service will be silent, otherwise BioQueue will send a mail to you when a job is finished or an error is raised. And then you can configure it as a mail client.
+We know that keeping an eye on watching those time-consuming jobs is very tedious, so BioQueue provides an E-mail notification for changes among job status. By default, e-mail notification is silent. To turn on this push service, you need to fill in a form in ``Settings >> Notification``. If the ``Mail host`` textbox is left to be blank, then the service will be silent, otherwise BioQueue will send a mail to you when a job is finished or an error is raised. And then you can configure it as a mail client.
 
 Using BioQueue in Compute Cluster
 ---------------------------------
-BioQueue possesses a plug-in system to provide supports for compute clusters. For example, BioQueue currently supports TORQUE PBS, and does not require a dedicated or special cluster configuration. If you want to use BioQueue in TORQUE PBS, open the ``config.conf`` file in ``worker`` folder, then change following items in ``cluster`` section:
-
-1. ``type`` to ``TorquePBS``.
-2. ``cpu`` to the amount of CPU to use.
-3. ``queue`` to the name of the queue, for example 'high', 'low' or 'fat'.
+BioQueue possesses a plug-in system to provide supports for compute clusters. For example, BioQueue currently supports TORQUE PBS, and does not require a dedicated or special cluster configuration. If you want to use BioQueue in TORQUE PBS, open the ``Settings >> Cluster Settings``, then fill in the form.
 
 Develop new Cluster Plug-in for BioQueue
 ----------------------------------------
