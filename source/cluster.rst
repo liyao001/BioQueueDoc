@@ -1,7 +1,6 @@
 Cluster Specification
 =====================
-When running on cluster, BioQueue corporates with the original DRMs and
- associates them to allocate proper resources for jobs. In this page, we will introduce:
+When running on cluster, BioQueue corporates with the original DRMs and associates them to allocate proper resources for jobs. In this page, we will introduce:
 
 1. How to use BioQueue in cluster
 2. How to develop new cluster plug-ins for BioQueue
