@@ -43,6 +43,7 @@ By default, BioQueue will use a python package called MySQL-python to connect to
 3. Copy the following code and paste them into ``manage.py`` and ``worker >> __init__.py``::
   try:
     import pymysql
+    
     pymysql.install_as_MySQLdb()
   except ImportError:
     pass

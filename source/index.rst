@@ -23,6 +23,7 @@ Contents
    job
    example
    faq
+   cluster
 
 Indices and tables
 ==================
