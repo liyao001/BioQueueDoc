@@ -21,7 +21,7 @@ is the protocol.
 6. *Start the queue*.
 
 In ``Cluster Settings`` section, we provide some options. Here is a more
-detailed explaintion for them.
+detailed explanation for them.
 
 +------------------------+------------------------------------------------------------------------------------------------------------------------------+--------------+
 |Option                  |Description                                                                                                                   |Default       |
@@ -37,7 +37,7 @@ detailed explaintion for them.
 |Wall-time               |Maximum amount of real time during which the job can be in the running state.                                                 |No limit      |
 +------------------------+------------------------------------------------------------------------------------------------------------------------------+--------------+
 
-For example, when BioQueue submits job on a cluster managed by TorquePBS, the options defined above will be translated into Torque paraments like this:
+For example, when BioQueue submits job on a cluster managed by TorquePBS, the options defined above will be translated into Torque parameters like this:
 
 1. -l ppn: CPU cores BioQueue predicts the job will take, if the prediction model has not been generated, the ppn option is equal to ``CPU cores for single job``.
 2. -l mem: The physical memory BioQueue predicts the job will use, if the prediction model has not been generated, the mem option is equal to ``Physicial memory``.
@@ -53,14 +53,14 @@ work with these plugins directly and users do not need to modify any code of
 BioQueue. However, limited by the clusters we can access, BioQueue now just
 provides build-in plugins for TorquePBS (carefully tested under production
 environment) and HTCondor (not tested under production environment). So we hope
-our users who have the privilege to accesss other types of DRMs can involved in
+our users who have the privilege to access other types of DRMs can involved in
 the development of cluster plugins. Here we provide a detailed documentation for
 developing new plugins for BioQueue.
 
 1. Coding conventions
 +++++++++++++++++++++
 
-1. **Required**: All plugins files is written in Python or at least provide a wrapper written in Python. The file name should be identical to the DRM's name and other supplementary files should use the DRM's name with different suffix. Take TorquePBS for example, the plugin file should named as *TorquePBS.py* and if you use an extra file as the template for job script, the name of it should be *TorquePBS.tpl*.
+1. **Required**: All plugins files are written in Python or at least provide a wrapper written in Python. The file name should be identical to the DRM's name and other supplementary files should use the DRM's name with different suffix. Take TorquePBS for example, the plugin file should be named as *TorquePBS.py* and if you use an extra file as the template for job script, the name of it should be *TorquePBS.tpl*.
 2. Suggested: Function name or variable name should follow the style guide for Python code stated in `PEP 8 <https://www.python.org/dev/peps/pep-0008/>`_. In brief, both function name and variable in function should be lowercase.
 3. Suggested: Two blank lines between two function block is expected.
 
@@ -134,7 +134,7 @@ Problems you may encounter with
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Cluster users usually do not have root privilege, and the python installation
 may be out-of-date. So it may be hard for biologists to configure the python
-enviorment for BioQueue, here we provide a helper script in
+environment for BioQueue, here we provide a helper script in
 *deploy/python_pip_non_root.sh*. This shell script will download source code of
 Python 2.7.13 from `Python.org <https://www.python.org>`_ and compile it on the
 machine. You can run the script by running::
