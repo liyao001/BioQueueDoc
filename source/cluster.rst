@@ -121,8 +121,8 @@ of the function is::
 
 3. Share the plugin with everyone
 +++++++++++++++++++++++++++++++++
-To share your plugin with other people, please fork BioQueue at
- ` github <https://github.com/liyao001/BioQueue>`_, and copy the plugins files
+To share your plugin with other people, please fork BioQueue
+at ` github <https://github.com/liyao001/BioQueue>`_, and copy the plugins files
 into ``worker>>cluster_models``. Then you can start a pull requests. Once we
 receive your pull requests, we will validate it as soon as possible. After that
 your plugin will be available for everyone.
