@@ -3,17 +3,17 @@ Cluster Specification
 When running on cluster, BioQueue corporates with the original DRMs and associates them to allocate proper resources for jobs. In this page, we will introduce:
 
 1. How to use BioQueue in cluster
-2. How to develop new cluster plug-ins for BioQueue
+2. How to develop new cluster plugins for BioQueue
 3. Problems you may encounter with
 
 
 How to use BioQueue on clusters
 -------------------------------
-The usage of BioQueue on clusters is identical to on local or clouds. The only
+The usage of BioQueue on clusters is identical to local or clouds. The only
 thing you need to do extraly is to tell BioQueue you are using a cluster. Here
 is the protocol.
 
-1. Install BioQueue follow the protocol mentioned before.
+1. Install BioQueue following the `protocol mentioned before <getstarted.html>`_.
 2. Run BioQueue web server.
 3. Login to BioQueue and open ``Settings``.
 4. Click ``Cluster Settings`` in the page and fill in the form. By default, the value for ``Cluster engine`` is ``Run on local / cloud`` and all options for clusters are disabled. Once you choose a cluster engine (For example, TorquePBS), the cluster model for BioQueue will be activated. To turn it off, change cluster engine back to ``Run on local / cloud``.
@@ -62,10 +62,10 @@ developing new plugins for BioQueue.
 
 1. **Required**: All plugins files are written in Python or at least provide a wrapper written in Python. The file name should be identical to the DRM's name and other supplementary files should use the DRM's name with different suffix. Take TorquePBS for example, the plugin file should be named as *TorquePBS.py* and if you use an extra file as the template for job script, the name of it should be *TorquePBS.tpl*.
 2. Suggested: Function name or variable name should follow the style guide for Python code stated in `PEP 8 <https://www.python.org/dev/peps/pep-0008/>`_. In brief, both function name and variable in function should be lowercase.
-3. Suggested: Two blank lines between two function block is expected.
+3. Suggested: Two blank lines between two function block are expected.
 
-2. Function the plugin should implement
-+++++++++++++++++++++++++++++++++++++++
+2. Functions should be implemented in the plugin
+++++++++++++++++++++++++++++++++++++++++++++++++
 The plugin must provide three functions for BioQueue to call. When you develop a
 new plugin, **REMEMBER TO FOLLOW THE PARAMETER LIST WE PROVIDE BELOWE!!**
 
@@ -106,8 +106,8 @@ prototype of the function is::
   :return: int, job status
 
 If the job has completed, the function should return 0. If the job is running,
-it should return 1. If the job is queuing is queuing, it should return 2. If an
-error occured during the execution of a job, it should return a negative number.
+it should return 1. If the job is queuing, it should return 2. If an
+error occurs during the execution of a job, it should return a negative number.
 
 cancel_job
 ^^^^^^^^^^
