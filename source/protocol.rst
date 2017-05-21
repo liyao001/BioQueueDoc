@@ -131,9 +131,9 @@ Note: Don't forget to add braces before you use a reference in any of your proto
 
 Edit Steps
 -------------
-When you need to change parameters of a certain step, you should click ``Edit Protocol`` at the sidebar. Then you move mouse to ``Operation`` column where the protocol locates in, and click the ``Check Steps`` label.
+When you need to change parameters of a certain step, you should click ``Edit Protocol`` at the sidebar. Then you move mouse to ``Operation`` column where the protocol locates in, and click the ``Edit Protocol`` label.
 
-.. image:: https://cloud.githubusercontent.com/assets/17058337/21838124/37ac2e18-d80b-11e6-837c-23c8e7d178d8.png
+.. image:: https://cloud.githubusercontent.com/assets/17058337/26282377/2b41de5e-3e43-11e7-8dd2-d185217d9fba.gif
 
 When the steps' table shows up, you can click the parameter of the step. Now you can edit the parameter. Once you click any place at that page, your changes will be saved automatically.
 
