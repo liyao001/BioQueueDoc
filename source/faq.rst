@@ -43,7 +43,7 @@ By default, BioQueue will use a python package called MySQL-python to connect to
 3. Copy the following code and paste them into ``manage.py`` and ``worker >> __init__.py``::
   try:
     import pymysql
-    
+
     pymysql.install_as_MySQLdb()
   except ImportError:
     pass
@@ -52,11 +52,3 @@ By default, BioQueue will use a python package called MySQL-python to connect to
 Turn on E-mail Notification
 ---------------------------
 We know that keeping an eye on watching those time-consuming jobs is very tedious, so BioQueue provides an E-mail notification for changes among job status. By default, e-mail notification is silent. To turn on this push service, you need to fill in a form in ``Settings >> Notification``. If the ``Mail host`` textbox is left to be blank, then the service will be silent, otherwise BioQueue will send a mail to you when a job is finished or an error is raised. And then you can configure it as a mail client.
-
-Using BioQueue in Compute Cluster
----------------------------------
-BioQueue possesses a plug-in system to provide supports for compute clusters. For example, BioQueue currently supports TORQUE PBS, and does not require a dedicated or special cluster configuration. If you want to use BioQueue in TORQUE PBS, open the ``Settings >> Cluster Settings``, then fill in the form.
-
-Develop new Cluster Plug-in for BioQueue
-----------------------------------------
-We use ``__import__`` feature to load drivers for HPC, so to develop new cluster plug-in for BioQueue, you need to implement functions listed in ``worker >> cluster_models >> TorquePBS.py``. Then you should save this driver file in the ``cluster_models`` folder. When you want to load this driver, change ``type`` in ``config.conf`` file to identical to the driver’s name.
