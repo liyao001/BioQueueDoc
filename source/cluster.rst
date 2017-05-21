@@ -53,7 +53,7 @@ work with these plugins directly and users do not need to modify any code of
 BioQueue. However, limited by the clusters we can access, BioQueue now just
 provides build-in plugins for TorquePBS (carefully tested under production
 environment) and HTCondor (not tested under production environment). So we hope
-our users who have the privilege to access other types of DRMs can involved in
+our users who have the privilege to access other types of DRMs can involve in
 the development of cluster plugins. Here we provide a detailed documentation for
 developing new plugins for BioQueue.
 
