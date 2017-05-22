@@ -15,6 +15,7 @@ BioQueue can store data on SQLite, which means users can set up BioQueue without
 
 Since BioQueue is written in Python 2.7, please make sure that you have installed Python and pip. The following instructions are for Ubuntu 14.04, but can be used as guidelines for other Linux flavors::
 
+	sudo apt-get install build-essential
 	sudo apt-get install python-dev
 	sudo apt-get install python-pip
 
@@ -25,6 +26,8 @@ First of all, clone the project from github (Or you can download BioQueue by ope
 	git clone https://github.com/liyao001/BioQueue.git
 	Or
 	wget https://github.com/liyao001/BioQueue/zipball/master
+
+**NOTE:Download archives rather than use git makes it more difficult to stay up-to-date with BioQueue code because there is no simple way to update the copy.**
 
 Then navigate to the project's directory, and run the ``install.py`` script (All dependent python packages will be automatically installed)::
 

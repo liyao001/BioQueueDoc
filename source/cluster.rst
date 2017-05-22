@@ -17,32 +17,32 @@ is the protocol.
 2. Run BioQueue web server.
 3. Login to BioQueue and open ``Settings``.
 4. Click ``Cluster Settings`` in the page and fill in the form. By default, the value for ``Cluster engine`` is ``Run on local / cloud`` and all options for clusters are disabled. Once you choose a cluster engine (For example, TorquePBS), the cluster model for BioQueue will be activated. To turn it off, change cluster engine back to ``Run on local / cloud``.
-5. Click ``Update`` to save your changes.
+5. Click ``Save changes`` to save your changes.
 6. *Start the queue*.
 
 In ``Cluster Settings`` section, we provide some options. Here is a more
 detailed explanation for them.
 
-+------------------------+------------------------------------------------------------------------------------------------------------------------------+--------------+
-|Option                  |Description                                                                                                                   |Default       |
-+========================+==============================================================================================================================+==============+
-|CPU cores for single job|Specify the number of virtual processors (a physical core on the node or an "execution slot") per node requested for this job.|1             |
-+------------------------+------------------------------------------------------------------------------------------------------------------------------+--------------+
-|Physicial memory        |Maximum amount of physical memory used by any single process of the job.                                                      |No limit      |
-+------------------------+------------------------------------------------------------------------------------------------------------------------------+--------------+
-|Virtual memory          |Maximum amount of virtual memory used by all concurrent processes in the job.                                                 |No limit      |
-+------------------------+------------------------------------------------------------------------------------------------------------------------------+--------------+
-|Destination             |Defines the destination of the job. The destination names a queue, a server, or a queue at a server.                          |Default server|
-+------------------------+------------------------------------------------------------------------------------------------------------------------------+--------------+
-|Wall-time               |Maximum amount of real time during which the job can be in the running state.                                                 |No limit      |
-+------------------------+------------------------------------------------------------------------------------------------------------------------------+--------------+
++------------------------+--------------+------------------------------------------------------------------------------------------------------------------------------+
+|Option                  |Default       |Description                                                                                                                   |
++========================+==============+==============================================================================================================================+
+|CPU cores for single job|1             |Specify the number of virtual processors (a physical core on the node or an "execution slot") per node requested for this job.|
++------------------------+--------------+------------------------------------------------------------------------------------------------------------------------------+
+|Physicial memory        |No limit      |Maximum amount of physical memory used by any single process of the job.                                                      |
++------------------------+--------------+------------------------------------------------------------------------------------------------------------------------------+
+|Virtual memory          |No limit      |Maximum amount of virtual memory used by all concurrent processes in the job.                                                 |
++------------------------+--------------+------------------------------------------------------------------------------------------------------------------------------+
+|Destination             |Default server|Defines the destination of the job. The destination names a queue, a server, or a queue at a server.                          |
++------------------------+--------------+------------------------------------------------------------------------------------------------------------------------------+
+|Wall-time               |No limit      |Maximum amount of real time during which the job can be in the running state.                                                 |
++------------------------+--------------+------------------------------------------------------------------------------------------------------------------------------+
 
 For example, when BioQueue submits job on a cluster managed by TorquePBS, the options defined above will be translated into Torque parameters like this:
 
 1. -l ppn: CPU cores BioQueue predicts the job will take, if the prediction model has not been generated, the ppn option is equal to ``CPU cores for single job``.
 2. -l mem: The physical memory BioQueue predicts the job will use, if the prediction model has not been generated, the mem option is equal to ``Physicial memory``.
 3. -l vmem: The virtual memory BioQueue predicts the job will use, if the prediction model has not been generated, the vmem option is equal to ``Virtual memory``.
-4. -q: The destination defined in ``Destination``, for example, if the cluster has four queues: high, low, FAT_HIGH, BATCH and middle, the destination should be one of them.
+4. -q: The destination defined in ``Destination``, for example, if the cluster has five queues: high, middle, low, FAT_HIGH and BATCH, the destination should be one of them.
 5. -l walltime: Maximum amount of real time during which job can be in the running state defined in ``Wall-time``. For example, 24:00:00.
 
 How to develop new cluster plugins for BioQueue
@@ -76,17 +76,17 @@ a DRM. The prototype of the function is::
 
   submit_job(protocol, job_id, job_step, cpu=0, mem='', vrt_mem='', queue='', log_file='', wall_time='', workspace='')
 
-  :param protocol: string, the command a job needs to run, like "wget http://www.a.com/b.txt"
-  :param job_id: int, job id in BioQueue, like 1
-  :param job_step: int, step order in the protocol, like 0
-  :param cpu: int, cpu cores the job will use
-  :param mem: string, allocated physical memory, eg. 64G.
-  :param vrt_mem: string, allocated virtual memory, eg. 64G.
-  :param queue: string, job queue
-  :param log_file: string, path to store the log file
-  :param wall_time: string, cpu time
-  :param workspace: string, the initial directory of the job, all output files should be stored in the folder, or the users will not be able to see them
-  :return: int, if success, return job id in the cluster, else return 0
+:param protocol: string, the command a job needs to run, like "wget http://www.a.com/b.txt"
+:param job_id: int, job id in BioQueue, like 1
+:param job_step: int, step order in the protocol, like 0
+:param cpu: int, cpu cores the job will use
+:param mem: string, allocated physical memory, eg. 64G.
+:param vrt_mem: string, allocated virtual memory, eg. 64G.
+:param queue: string, job queue
+:param log_file: string, path to store the log file
+:param wall_time: string, cpu time
+:param workspace: string, the initial directory of the job, all output files should be stored in the folder, or the users will not be able to see them
+:return: int, if success, return job id in the cluster, else return 0
 
 *Note: BioQueue will assign '' to both mem and vrt_mem if the user doesn't
 define the max amount of pyhsical memory or virtual memory a job can use and
@@ -102,8 +102,8 @@ prototype of the function is::
 
   query_job_status(job_id)
 
-  :param job_id: int, job id in the cluster
-  :return: int, job status
+:param job_id: int, job id in the cluster
+:return: int, job status
 
 If the job has completed, the function should return 0. If the job is running,
 it should return 1. If the job is queuing, it should return 2. If an
@@ -116,8 +116,8 @@ of the function is::
 
   cancel_job(job_id)
 
-  :param job_id: int, job id
-  :return: if success, return 1, else return 0
+:param job_id: int, job id
+:return: if success, return 1, else return 0
 
 3. Share the plugin with everyone
 +++++++++++++++++++++++++++++++++

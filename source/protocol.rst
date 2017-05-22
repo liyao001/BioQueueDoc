@@ -11,7 +11,7 @@ To create a new protocol, you can either click ``Create Protocol`` button at the
 
 In BioQueue, you need to enter the software ("hisat2") into ``Software`` textbox, and then enter "-x ucsc_hg19.fastq -1 reads_1.fastq -2 reads_2.fastq -S alns.sam -t 16" into ``Parameter`` textbox.
 
-.. image:: https://cloud.githubusercontent.com/assets/17058337/21838123/37a7925e-d80b-11e6-8dc1-1176965870f0.png
+.. image:: https://cloud.githubusercontent.com/assets/17058337/26297208/7698b000-3f04-11e7-9636-66ccb820449f.png
 
 Actually, a typical protocol contains many steps, so you can click the ``Add Step`` button to add more step. After you added all steps, click ``Create Protocol`` button.
 
@@ -37,8 +37,9 @@ And if you want to analyze one more sample (for example Samples), you just need 
 
 Otherwise, you will have to create a new protocol.
 
+
 Mapping Files Between Steps
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+---------------------------
 In most cases, a step denotes how to create output files from input files. Since a protocol usually consists of many steps, making mapping of files flexible enough is a very important issue. So BioQueue provides three types of file mapping methods to do this.
 
 The first method is to write the file name directly. For some tools, the output files have standard names. One example is `STAR <https://github.com/alexdobin/STAR>`_, when it finished mapping RNA-SEQ reads, it would produce those files:
@@ -72,7 +73,7 @@ The third method is to use the **“Output”** family wildcards. Here is a tabl
 +---------------+------------------------------------------------------------------------------+
 
 More About Wildcards
-^^^^^^^^^^^^^^^^^^^^
+--------------------
 There are two main types of wildcards in BioQueue: pre-defined wildcards and user-defined wildcards (experimental variables and reference). Below is a table of pre-defined wildcards:
 
 +---------------+------------------------------------------------------------------------------+
@@ -105,10 +106,6 @@ There are two main types of wildcards in BioQueue: pre-defined wildcards and use
 |ThreadN        |The number of CPUs in the running node.                                       |
 +---------------+------------------------------------------------------------------------------+
 
-BioQueue provides a auto complete function when you employee those pre-defined tags:
-
-.. image:: https://cloud.githubusercontent.com/assets/17058337/21838121/377dfb2e-d80b-11e6-860b-9ca319a73fe2.gif
-
 Now, let’s have a look at the user-defined wildcards. As we mentioned before, BioQueue suggests users use wildcards to denote experimental variables in protocols, like sample name. This type of user-defined wildcards need to be assigned as ``Job parameter`` when creating jobs. In bioinformatics, there are some data that can be cited in different protocols, such as reference genome, GENCODE annotation, etc. So, in BioQueue, biological data that may be used in multiple protocols is called a “reference”. This is the other type of user-defined wildcards and it is defined at the ``Reference`` page.
 
 .. image:: https://cloud.githubusercontent.com/assets/17058337/21838125/37c77d4e-d80b-11e6-8a3f-795ec896a824.png
@@ -129,15 +126,32 @@ Here is a table showing how the usage of reference can reduce the redundancy of 
 
 Note: Don't forget to add braces before you use a reference in any of your protocol, like ``{HG38}``!
 
+Create a Protocol with Ease
+---------------------------
+To help general biologists to create a protocol with ease, we provide auxiliary functions which cover the entire process.
+
+1. Knowledge Base
++++++++++++++++++
+We set up a knowledge base on our open platform, so when our users need to search the usage information about a certain software, they can click the ``How to use the software?`` button.
+
+.. image:: https://cloud.githubusercontent.com/assets/17058337/26296755/ac4335c4-3f02-11e7-96fd-459005631ec2.gif
+
+2. Autocomplete
++++++++++++++++
+We provide an autocomplete widget to provide suggestions about pre-defined wildcards and user-defined references. Here is a demo:
+
+.. image:: https://cloud.githubusercontent.com/assets/17058337/26296868/262db83c-3f03-11e7-80e1-b421e2180dc0.gif
+
+In the demo, {HISAT2_HG38} is a user-defined reference, which refers to the path of hg38 indexes for HISAT2. While {InputFile:1}, {InputFile:1} and {ThreadN} are pre-defined wildcards.
+
+
 Edit Steps
--------------
+----------
 When you need to change parameters of a certain step, you should click ``Edit Protocol`` at the sidebar. Then you move mouse to ``Operation`` column where the protocol locates in, and click the ``Edit Protocol`` label.
 
 .. image:: https://cloud.githubusercontent.com/assets/17058337/26282377/2b41de5e-3e43-11e7-8dd2-d185217d9fba.gif
 
 When the steps' table shows up, you can click the parameter of the step. Now you can edit the parameter. Once you click any place at that page, your changes will be saved automatically.
-
-
 
 Share Protocol With Peer
 ------------------------
@@ -150,10 +164,10 @@ So, protocols written by BioQueue can be shared with a peer who are using the sa
 
 To share a protocol with a peer, you need to open the ``Edit protocol`` page, and choose ``Share`` in the ``Operation`` column.
 
-.. image:: https://cloud.githubusercontent.com/assets/17058337/21994280/e9fc3bce-dc59-11e6-8cbe-a0b9407f65a9.png
+.. image:: https://cloud.githubusercontent.com/assets/17058337/26297301/e41b2ff4-3f04-11e7-94d2-bc4a1175c7e6.gif
 
 Then enter username of the peer you want to share with, and click ``Share with a peer``.
 
-.. image:: https://cloud.githubusercontent.com/assets/17058337/21994281/e9fd1af8-dc59-11e6-940f-710997f114ee.png
+.. image:: https://cloud.githubusercontent.com/assets/17058337/26297266/afea3a7c-3f04-11e7-863a-95eea9afaba8.png
 
 To share a protocol with the public, you need to open the same dialog, and click the ``Build a sharable protocol`` button, then a protocol file would be generated. You can publish this protocol on `BioQueue Open Platform <http://open.bioqueue.org>`_ or any other web forums.

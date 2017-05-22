@@ -14,9 +14,31 @@ And users can use a ftp client (`FileZilla <https://filezilla-project.org/>`_, t
 
 How to update BioQueue
 ----------------------
-We will bring new features and fix bugs when we release a new version. So we recommand you to keep your instance as new as possible. If you have an BioQueue repository and want to update it, run::
+We will bring new features and fix bugs when we release a new version. So we recommand you to keep your instance as new as possible. If you have an BioQueue repository and want to update it, there are several ways to do so.
 
-  git pull
+1. Run update.py in worker folder
++++++++++++++++++++++++++++++++++
+We provide a python script named as ``update.py`` in ``worker`` folder, which will check updates for both BioQueue's source code and dependent packages::
+
+  python worker/update.py
+
+Also, for Linux/Unix users, BioQueue update service can run in background by run ``update_daemon.py`` instead of ``update.py``::
+
+  python worker/update_daemon.py start
+
+This service will check for update everyday.
+
+2. Click Update button in ``Settings`` page
++++++++++++++++++++++++++++++++++++++++++++
+We also provide an update button in the ``Settings`` page, clicking the button, BioQueue will call ``update.py`` to update your instance.
+
+3. git pull
++++++++++++
+You can also use git pull command to update BioQueue's source code, but this command won't update the dependent packages!
+
+4. NOTE
++++++++
+The update service relies on git, so please make sure that you have installed git and you cloned BioQueue from GitHub.
 
 Use BioQueue with Apache in Production Environment
 --------------------------------------------------
@@ -36,18 +58,23 @@ Note: For virtualenv users, please replace ``/usr/lib/python2.7/dist-packages`` 
 
 Cannot install MySQL-python?
 ----------------------------
-By default, BioQueue will use a python package called MySQL-python to connect to MySQL server. However, it may be hard to install it especially for non-root users. The alternative solution is to use PyMySQL (a pure python mysql client). Here is the protocol:
+By default, BioQueue will use a python package called MySQL-python to connect to MySQL server. However, it may be hard to install it especially for non-root users. The alternative solution is to use PyMySQL (a pure python mysql client). We provide a python script in BioQueue's ``deploy`` folder to help you to complete the switch. So for most of our users, the following command should be enough to solve this problem::
 
-1. Remove ``MySQL-python>=1.2.5`` from ``prerequisites.txt`` in ``deploy`` folder.
-2. Rerun ``install.py``.
-3. Copy the following code and paste them into ``manage.py`` and ``worker >> __init__.py``::
+  python deploy/switch_from_MySQLdb_to_PyMySQL.py
+
+However, if you want to try it yourself, here is the protocol:
+
+1. Remove ``MySQL-python==1.2.5`` from ``prerequisites.txt`` in ``deploy`` folder.
+2. Copy the python code and paste them into the begining of ``manage.py`` and ``worker >> __init__.py``:
+3. Rerun ``install.py``.
+
+Code::
+
   try:
-    import pymysql
-
-    pymysql.install_as_MySQLdb()
+      import pymysql
+      pymysql.install_as_MySQLdb()
   except ImportError:
-    pass
-4. Restart BioQueue.
+      pass
 
 Turn on E-mail Notification
 ---------------------------
