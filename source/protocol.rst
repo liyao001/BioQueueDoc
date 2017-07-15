@@ -126,6 +126,15 @@ Here is a table showing how the usage of reference can reduce the redundancy of 
 
 Note: Don't forget to add braces before you use a reference in any of your protocol, like ``{HG38}``!
 
+Shortcuts for Creating Reference
+++++++++++++++++++++++++++++++++
+To facilitate our users to create a reference with ease, we provide some shortcuts.
+Both uploaded files and job output files can be set as a reference by clicking the
+``Create a reference`` button on either ``Sample Pool`` page, which can be accessed through
+clicking the ``Sample Pool`` button in index, or ``Job Status`` page (When you click
+on the output folder, you will be able to see the button in the new dialog.)
+.. image:: https://user-images.githubusercontent.com/17058337/28241054-86b72544-69bf-11e7-8745-a50a3d6e5024.gif
+
 Create a Protocol with Ease
 ---------------------------
 To help general biologists to create a protocol with ease, we provide auxiliary functions which cover the entire process.
