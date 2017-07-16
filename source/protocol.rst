@@ -133,6 +133,7 @@ Both uploaded files and job output files can be set as a reference by clicking t
 ``Create a reference`` button on either ``Sample Pool`` page, which can be accessed through
 clicking the ``Sample Pool`` button in index, or ``Job Status`` page (When you click
 on the output folder, you will be able to see the button in the new dialog.)
+
 .. image:: https://user-images.githubusercontent.com/17058337/28241054-86b72544-69bf-11e7-8745-a50a3d6e5024.gif
 
 Create a Protocol with Ease
