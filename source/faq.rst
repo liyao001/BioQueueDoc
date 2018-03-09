@@ -76,6 +76,14 @@ Code::
   except ImportError:
       pass
 
+Cannot access BioQueue due to firewall settings
+-------------------------------------------------
+Sometimes, the firewall installed by the administrators of the cluster may block web access outside the cluster. Under this circumatance, build a tunnel by hiring ``ssh`` should solve the problem. Here is an example::
+
+  ssh -N -L ${PORT}:localhost:${PORT} ${USER_NAME}@{REMOTE_ADDRESS}
+
+Please replace ``${PORT}``, ``${USER_NAME}``, ``${REMOTE_ADDRESS}`` with your own answers. If you use BioQueue's default settings, ``${PORT}`` should be replaced with ``8888``.
+
 Turn on E-mail Notification
 ---------------------------
 We know that keeping an eye on watching those time-consuming jobs is very tedious, so BioQueue provides an E-mail notification for changes among job status. By default, e-mail notification is silent. To turn on this push service, you need to fill in a form in ``Settings >> Notification``. If the ``Mail host`` textbox is left to be blank, then the service will be silent, otherwise BioQueue will send a mail to you when a job is finished or an error is raised. And then you can configure it as a mail client.
